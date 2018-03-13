@@ -1,7 +1,7 @@
 #!/usr/bin.env ruby
 
 require "bundler/setup"
-require_relative "../lib/good_quotes/cli.rb"
+require './lib/good_quotes'
 
 
 GoodQuotes::CLI.new.call
