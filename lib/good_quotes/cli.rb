@@ -1,6 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
-require_relative './quotes.rb'
+
 
 class GoodQuotes::CLI
 
@@ -18,6 +18,8 @@ class GoodQuotes::CLI
     #   puts "#{counter}. " + quote.attribute("alt").value
     #   counter +=1
     # end
+    GoodQuotes::Quotes.list
+
   end
 
   def menu

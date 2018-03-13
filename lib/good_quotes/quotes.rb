@@ -1,25 +1,16 @@
 require 'nokogiri'
 require 'open-uri'
 
-class Quotes
+class GoodQuotes::Quotes
 
-  @@all = []
-
-  def initialize
-  brainyquote = Nokogiri::HTML(open("https://www.brainyquote.com/"))
-  quotesList = brainyquote.css("#quotesList img")
+  def self.list
+    brainyquote = Nokogiri::HTML(open("https://www.brainyquote.com/"))
+    quotesList = brainyquote.css("#quotesList img")
+    counter = 1
     quotesList.each do |quote|
-      {:quote=> quote.attribute("alt").value,
-       :author_link=> quote.attribute("href").value
-      }
-      @@all << self
+      puts "#{counter}. " + quote.attribute("alt").value
+      counter +=1
     end
   end
 
-  def all
-    puts @@all
-  end
-
 end
-
-puts Quotes.new.all
