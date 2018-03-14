@@ -7,7 +7,7 @@ class GoodQuotes::Quotes
     brainyquote = Nokogiri::HTML(open("https://www.brainyquote.com/"))
     quotesList = brainyquote.css("#quotesList img")
     counter = 1
-    quotesList.each do |quote|
+    quotesList.first(10).each do |quote|
       puts "#{counter}. " + quote.attribute("alt").value
       counter +=1
     end
