@@ -7,14 +7,20 @@ class GoodQuotes::CLI
   end
 
   def list_quotes
-    GoodQuotes::Quotes.new.list
+    GoodQuotes::Quotes.list
   end
 
   def menu
     input = nil
     puts "Type in the quote number to learn more about the author, or type 'exit' to end current session."
     until input == "exit"
-      input = gets.strip
+      input = gets.strip.to_i
+      if input >= 1 && input <= 10
+        puts "Here are #{GoodQuotes::Quotes.all[input-1][:author]}'s top 3 books:"
+        GoodQuotes::Authors.all
+        # GoodQuotes::Authors.findByName(GoodQuotes::Quotes.all[input-1][:author]).books
+        input = gets.strip
+      end
     end
   end
 
