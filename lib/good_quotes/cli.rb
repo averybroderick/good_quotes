@@ -1,7 +1,3 @@
-require 'nokogiri'
-require 'open-uri'
-
-
 class GoodQuotes::CLI
 
   def call
@@ -11,15 +7,7 @@ class GoodQuotes::CLI
   end
 
   def list_quotes
-    # brainyquote = Nokogiri::HTML(open("https://www.brainyquote.com/"))
-    # quotesList = brainyquote.css("#quotesList img")
-    # counter = 1
-    # quotesList.each do |quote|
-    #   puts "#{counter}. " + quote.attribute("alt").value
-    #   counter +=1
-    # end
-    GoodQuotes::Quotes.list
-
+    GoodQuotes::Quotes.new.list
   end
 
   def menu
@@ -29,6 +17,5 @@ class GoodQuotes::CLI
       input = gets.strip
     end
   end
-
 
 end

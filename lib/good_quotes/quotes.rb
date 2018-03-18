@@ -1,14 +1,15 @@
-require 'nokogiri'
-require 'open-uri'
-
 class GoodQuotes::Quotes
 
+  attr_accessor :quotes
+
+  def initialize
+    @quotes = GoodQuotes::Scraper.scrape
+  end
+
   def self.list
-    brainyquote = Nokogiri::HTML(open("https://www.brainyquote.com/"))
-    quotesList = brainyquote.css("#quotesList img")
     counter = 1
-    quotesList.first(10).each do |quote|
-      puts "#{counter}. " + quote.attribute("alt").value
+    @quotes.each do |quote|
+      puts "#{counter}. #{quote[:quote]} - #{quote[:author]}" 
       counter +=1
     end
   end
